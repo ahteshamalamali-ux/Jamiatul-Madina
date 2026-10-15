@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jamiatul Madina Faizan-e-Siddique Akbar, Agra</title>
+<meta name="description" content="Jamiatul Madina Faizan-e-Siddique Akbar, Agra. Alim course from Darja-e-Oola to Darul Hadis Sharif.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdfbf7;
+  --card:#ffffff;
+  --ink:#1c1917;
+  --mut:#665e57;
+  --line:#e7e0d8;
+  --gold:#b45309;
+  --gold-hover:#92400e;
+  --gold-soft:#fef3c7;
+  --accent:#1e293b;
+  --soft:#f7f3ec;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12100e;
+    --card:#1c1917;
+    --ink:#f5f5f4;
+    --mut:#a8a29e;
+    --line:#2e2a27;
+    --gold:#d97706;
+    --gold-hover:#b45309;
+    --gold-soft:#2a1f11;
+    --accent:#f8fafc;
+    --soft:#26221f;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Inter,system-ui,sans-serif}
+[hidden]{display:none!important}
+h1,h2,h3,h4{font-family:Amiri,Georgia,serif;line-height:1.2;margin:0 0 .4em}
+h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:700}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:700}
+h3{font-size:1.3rem}
+p{margin:0 0 1em}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+
+/* Initial Welcome & Auth Gate Overlay */
+#welcomeGate{
+  position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,rgba(180,83,9,0.25),transparent 65%),linear-gradient(135deg,#1c1917,#292524,#0f0e0d);
+  z-index:9999;display:grid;place-items:center;padding:20px;color:#fff;overflow-y:auto;
+}
+.gate-box{
+  background:var(--card);color:var(--ink);width:100%;max-width:520px;border-radius:24px;padding:40px;box-shadow:0 30px 60px rgba(0,0,0,.5);border:1px solid var(--line);text-align:center;
+  animation:scaleUp .4s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes scaleUp{from{transform:scale(0.95);opacity:0}to{transform:none;opacity:1}}
+.gate-box .bis{font-family:'Scheherazade New',Amiri,serif;font-size:2rem;color:var(--gold);margin-bottom:8px}
+.gate-tabs{display:flex;gap:10px;margin:24px 0 16px;background:var(--soft);padding:4px;border-radius:12px}
+.gate-tabs button{flex:1;padding:10px;border:0;background:transparent;font:600 .9rem Inter,sans-serif;cursor:pointer;border-radius:8px;color:var(--mut);transition:all .3s ease}
+.gate-tabs button.active{background:var(--card);color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+
+/* Header Bar & 3-Bar Toggle */
+header{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 4px 20px rgba(180,83,9,.05);backdrop-filter:blur(8px)}
+.bar{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+.brand{text-decoration:none;font:700 1.2rem Amiri,serif;line-height:1.2;color:var(--gold)}
+.brand small{display:block;font:400 .75rem Inter,sans-serif;color:var(--mut)}
+.nav-right{display:flex;align-items:center;gap:12px}
+
+/* Hamburger 3-Bar Button */
+.menu-btn{background:var(--soft);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font:500 .9rem Inter,sans-serif;transition:all .2s ease}
+.menu-btn:hover{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
+.menu-btn span{display:inline-block;width:18px;height:2px;background:currentColor;position:relative;transition:all .2s ease}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;width:100%;height:2px;background:currentColor;left:0}
+.menu-btn span::before{top:-6px}
+.menu-btn span::after{top:6px}
+
+/* Slide-out Sidebar Drawer */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(3px)}
+.sidebar-overlay.active{opacity:1;pointer-events:auto}
+.sidebar-drawer{position:fixed;top:0;right:0;bottom:0;width:300px;background:var(--card);z-index:101;padding:32px 24px;box-shadow:-10px 0 30px rgba(0,0,0,0.15);transform:translateX(100%);transition:transform .3s cubic-bezier(0.16,1,0.3,1);display:flex;flex-direction:column;gap:16px;overflow-y:auto}
+.sidebar-drawer.active{transform:translateX(0)}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px}
+.sidebar-drawer nav{display:flex;flex-direction:column;gap:6px}
+.sidebar-drawer nav a{text-decoration:none;color:var(--ink);font-weight:500;padding:12px 16px;border-radius:12px;transition:all .2s ease}
+.sidebar-drawer nav a:hover{background:var(--soft);color:var(--gold);transform:translateX(4px)}
+
+.hero{background:radial-gradient(circle at 85% 15%,rgba(217,119,6,0.3),transparent 55%),linear-gradient(135deg,#1c1917,#292524 60%,#3d342f);color:#fff;padding:96px 0 84px;text-align:center}
+.bis{font-family:'Scheherazade New',Amiri,serif;font-weight:700;font-size:2.5rem;color:#fde68a;margin-bottom:12px;letter-spacing:1px}
+.hero p{color:#e7e5e4;max-width:54ch;margin:0 auto 1.6em;font-size:1.1rem}
+
+.btn{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-hover));color:#fff;font:500 .95rem Inter,sans-serif;padding:12px 24px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;box-shadow:0 4px 15px rgba(180,83,9,.25);transition:all .3s cubic-bezier(0.4,0,0.2,1)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(180,83,9,.35)}
+.btn.alt{background:transparent;color:inherit;border:1.5px solid currentColor;box-shadow:none}
+.btn.alt:hover{background:var(--soft);transform:translateY(-2px)}
+.btn.sm{padding:7px 16px;font-size:.85rem}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:40px}
+.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;backdrop-filter:blur(6px);transition:transform .3s ease}
+.stat:hover{transform:translateY(-4px);background:rgba(255,255,255,.1)}
+.stat b{display:block;font:700 2.2rem Amiri,serif;color:#fde68a}
+.stat span{font-size:.9rem;color:#e7e5e4}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.03);transition:transform .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(180,83,9,.08)}
+.band{background:linear-gradient(180deg,var(--soft),var(--bg))}
+.ph{color:var(--mut);font-style:italic}
+
+.cl{display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start}
+.cls{display:grid;gap:8px}
+.cls button{font:500 .95rem Inter,sans-serif;text-align:left;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .3s ease}
+.cls button:hover{border-color:var(--gold);background:var(--soft);transform:translateX(4px)}
+.cls button.on{background:linear-gradient(135deg,var(--gold),var(--gold-hover));color:#fff;border-color:var(--gold);box-shadow:0 4px 15px rgba(180,83,9,.3)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chip{background:var(--soft);color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem;font-weight:500}
+
+.ev{display:flex;gap:20px;margin-bottom:16px;align-items:center}
+.date{flex:none;width:84px;text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold-hover));color:#fff;border-radius:14px;padding:10px 4px;font-size:.8rem;box-shadow:0 4px 12px rgba(180,83,9,.2)}
+.date b{display:block;font:700 1.6rem Amiri,serif;color:#fde68a;line-height:1.1}
+.ev p{margin:0;color:var(--mut)}
+
+form,.row{display:grid;gap:14px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+label{font-weight:500;font-size:.9rem;display:block}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;margin-top:4px;transition:all .3s ease}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(180,83,9,.15);outline:none}
+
+.tb{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:end}
+.tb>*{flex:1 1 150px}.tb .btn{flex:none}
+.cnt{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:12px;border-top:1px solid var(--line);white-space:nowrap}
+tbody tr:hover{background:var(--soft)}
+th{color:var(--mut);font-weight:600;border-top:0}
+.msg{color:var(--mut);font-size:.9rem;margin:8px 0 0}
+
+footer{background:radial-gradient(circle at 50% 0%,#292524,#1c1917);color:#e7e5e4;padding:64px 0 40px;font-size:.95rem}
+footer h3{color:#fde68a}
+.fg3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px}
+@media (max-width:760px){.cl{grid-template-columns:1fr}.cls{grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto}}
+</style>
+</head>
+<body>
+
+<!-- Opening Welcome & Authentication Gate Overlay -->
+<div id="welcomeGate">
+  <div class="gate-box">
+    <div class="bis" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <h2 style="margin-bottom:6px">Welcome to Jamiatul Madina Faizan-e-Siddique Akbar</h2>
+    <p class="ph" style="margin-bottom:20px">Taj Nagri Phase 2, Near Hotel Orchid, Agra</p>
+    
+    <div class="gate-tabs">
+      <button type="button" class="active" id="tabStudentBtn">Student Login</button>
+      <button type="button" id="tabAdminBtn">Admin Login</button>
+    </div>
+
+    <!-- Student Gate Form -->
+    <form id="gateStudentForm">
+      <div>
+        <label for="gateClassSelect">Select Your Class / Darja</label>
+        <select id="gateClassSelect" required>
+          <option value="">-- Choose Class --</option>
+          <option value="1">Darja-e-Oola (Year 1)</option>
+          <option value="2">Darja-e-Thaniya (Year 2)</option>
+          <option value="3">Darja-e-Thalitha (Year 3)</option>
+          <option value="4">Darja-e-Rabia (Year 4)</option>
+          <option value="5">Darja-e-Khamisa (Year 5)</option>
+          <option value="6">Darja-e-Sadisa (Year 6)</option>
+          <option value="7">Darja-e-Sabia (Year 7)</option>
+          <option value="8">Darul Hadis Sharif (Year 8)</option>
+        </select>
+      </div>
+      <div><label for="gateRoll">Roll Number</label><input id="gateRoll" required placeholder="e.g. 101 or 102"></div>
+      <div><label for="gatePhone">Phone Number / Password</label><input id="gatePhone" required placeholder="e.g. 9876543211 or your new password"></div>
+      <div style="margin-top:16px">
+        <button class="btn" type="submit" style="width:100%">Enter Portal &amp; View Syllabus</button>
+      </div>
+      <div style="margin-top:8px;text-align:right">
+        <a href="#" id="forgotPassLink" style="font-size:0.85rem;color:var(--gold);text-decoration:underline">Forgot Password?</a>
+      </div>
+      <p class="msg" id="gateStudentMsg" style="color:#b91c1c;margin-top:10px"></p>
+    </form>
+
+    <!-- Student Forgot Password Form -->
+    <form id="gateForgotForm" hidden>
+      <p style="font-size:0.9rem;color:var(--mut)">Enter your Roll Number to set a new password.</p>
+      <div><label for="forgotRoll">Roll Number</label><input id="forgotRoll" required placeholder="e.g. 102"></div>
+      <div><label for="newPassInput">New Password / Phone</label><input id="newPassInput" required placeholder="Enter new password"></div>
+      <div style="margin-top:16px">
+        <button class="btn" type="submit" style="width:100%">Update Password</button>
+      </div>
+      <div style="margin-top:8px;text-align:left">
+        <a href="#" id="backToLoginLink" style="font-size:0.85rem;color:var(--gold);text-decoration:underline">Back to Login</a>
+      </div>
+      <p class="msg" id="forgotMsg" style="margin-top:10px"></p>
+    </form>
+
+    <!-- Admin Gate Form -->
+    <form id="gateAdminForm" hidden>
+      <div><label for="gateAdminUser">Username</label><input id="gateAdminUser" required placeholder="admin"></div>
+      <div><label for="gateAdminPass">Password</label><input id="gateAdminPass" type="password" required placeholder="••••••••"></div>
+      <div style="margin-top:16px">
+        <button class="btn" type="submit" style="width:100%">Enter Website as Admin</button>
+      </div>
+      <p class="msg" id="gateAdminMsg" style="color:#b91c1c;margin-top:10px"></p>
+      <p class="msg" style="margin-top:8px;font-size:0.8rem">Demo Admin: <b>admin</b> / <b>admin123</b></p>
+    </form>
+    
+    <div style="margin-top:20px;border-top:1px solid var(--line);padding-top:14px">
+      <button class="btn alt sm" id="skipGateBtn" type="button" style="width:100%">Continue as Guest Visitor</button>
+    </div>
+  </div>
+</div>
+
+<header>
+<div class="wrap bar">
+  <a class="brand" href="#top">Jamiatul Madina<small>Faizan-e-Siddique Akbar, Agra</small></a>
+  <div class="nav-right">
+    <button class="btn sm alt" id="reopenGateBtn" type="button">Portal Login</button>
+    <!-- 3-Bar Toggle Button -->
+    <button class="menu-btn" id="openSidebarBtn" type="button" aria-label="Toggle Navigation Menu">
+      <span></span> Navigation
+    </button>
+  </div>
+</div>
+</header>
+
+<!-- Slide-Out Sidebar Drawer -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar-drawer" id="sidebarDrawer">
+  <div class="sidebar-header">
+    <h3 style="margin:0">Menu Navigation</h3>
+    <button class="btn sm alt" id="closeSidebarBtn" type="button">✕</button>
+  </div>
+  <nav id="sidebarNav">
+    <a href="#top" data-role="all">Home</a>
+    <a href="#leadership" data-role="public">Leadership</a>
+    <a href="#teachers" data-role="public">Faculty &amp; Teachers</a>
+    <a href="#classes" data-role="all">Classes &amp; Syllabus</a>
+    <a href="#results" data-role="all">Results</a>
+    <a href="#admission" data-role="public">Admission Inquiry</a>
+    <a href="#events" data-role="all">Upcoming Events</a>
+    <a href="#feedback" data-role="all">Feedback &amp; Suggestions</a>
+    <a href="#students" data-role="all">Student Portal</a>
+  </nav>
+</div>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div class="bis" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <h1>Jamiatul Madina Faizan-e-Siddique Akbar</h1>
+    <p>Taj Nagri Phase 2, Near Hotel Orchid, Agra. Offering the comprehensive 8-year Dars-e-Nizami (Alim Course) from foundational studies to Darul Hadis Sharif.</p>
+    <a class="btn" href="#classes">Explore Syllabus</a> 
+    <a class="btn alt" href="#admission" data-role="public">Admission Inquiry</a>
+    <div class="stats">
+      <div class="stat"><b>60+</b><span>Students</span></div>
+      <div class="stat"><b>8</b><span>Years of Dars-e-Nizami</span></div>
+      <div class="stat"><b>1</b><span>Final Year (Darul Hadis)</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="leadership" data-role="public">
+  <div class="wrap">
+    <h2>Leadership Team</h2>
+    <div class="fg" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <div class="card">
+        <h3>Principal</h3>
+        <p style="font-size:1.2rem;font-weight:600;color:var(--gold);margin-bottom:4px">Molana Raihan Misbahi</p>
+        <p class="ph">Mohtamim / Principal</p>
+        <p>Leading the institution with dedication to traditional Islamic scholarship, spiritual discipline, and academic excellence.</p>
+      </div>
+      <div class="card">
+        <h3>Vice Principal</h3>
+        <p style="font-size:1.2rem;font-weight:600;color:var(--gold);margin-bottom:4px">Molana Imran Misbahi</p>
+        <p class="ph">Naib Mohtamim / Vice Principal</p>
+        <p>Overseeing student affairs, daily administration, and academic scheduling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="teachers" class="band" data-role="public">
+  <div class="wrap">
+    <h2>Faculty &amp; Teachers</h2>
+    <p>Our esteemed instructors guiding students through Islamic sciences and Dars-e-Nizami.</p>
+    <div class="fg" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <div class="card">
+        <h3>Molana Abdul Azeez Misbahi</h3>
+        <p class="chip">Shaikhul Hadees</p>
+        <p>Expert instructor in Hadith literature, Sahih al-Bukhari, and advanced prophetic traditions.</p>
+      </div>
+      <div class="card">
+        <h3>Molana Shafeek Madani</h3>
+        <p class="chip">Ustazul Ulama</p>
+        <p>Specialist in Fiqh, Usul, and classical Arabic texts.</p>
+      </div>
+      <div class="card">
+        <h3>Molana Alamgeer Misbahi</h3>
+        <p class="chip">Ustazul Ulama</p>
+        <p>Experienced mentor for Tafsir, Arabic grammar, and literature.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="classes" data-role="all">
+  <div class="wrap">
+    <h2>Classes &amp; 8-Year Dars-e-Nizami Syllabus</h2>
+    <p id="syllabusIntro">Select any academic year below to view the official recommended books and subjects prescribed for the course.</p>
+    <div class="cl">
+      <div class="cls" id="cls" data-render></div>
+      <div class="card" id="clp" data-render></div>
+    </div>
+  </div>
+</section>
+
+<!-- Class-Wise Results Section -->
+<section id="results" class="band" data-role="all">
+  <div class="wrap">
+    <h2>Class-Wise Examination Results</h2>
+    <p>Select a class below to view student grades, performance, and assessment reports.</p>
+    <div class="tb" style="margin-bottom:20px">
+      <div>
+        <label for="resClassSelect">Select Class</label>
+        <select id="resClassSelect">
+          <option value="1">Darja-e-Oola (Year 1)</option>
+          <option value="2">Darja-e-Thaniya (Year 2)</option>
+          <option value="3">Darja-e-Thalitha (Year 3)</option>
+          <option value="4">Darja-e-Rabia (Year 4)</option>
+          <option value="5">Darja-e-Khamisa (Year 5)</option>
+          <option value="6">Darja-e-Sadisa (Year 6)</option>
+          <option value="7">Darja-e-Sabia (Year 7)</option>
+          <option value="8">Darul Hadis Sharif (Year 8)</option>
+        </select>
+      </div>
+    </div>
+    <div class="card tw">
+      <table>
+        <thead>
+          <tr><th>Roll No.</th><th>Student Name</th><th>Father's Name</th><th>Term</th><th>Status / Grade</th></tr>
+        </thead>
+        <tbody id="resultTableBody">
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Admission Inquiry Section -->
+<section id="admission" data-role="public">
+  <div class="wrap">
+    <h2>Admission Inquiry</h2>
+    <p>Interested in joining Jamiatul Madina Faizan-e-Siddique Akbar? Submit your details below, and our admissions team will contact you.</p>
+    <div class="card" style="max-width:700px;margin:0 auto">
+      <form id="admissionForm">
+        <div class="fg">
+          <div><label for="admName">Student's Full Name</label><input id="admName" required placeholder="Enter full name"></div>
+          <div><label for="admFather">Father's Name</label><input id="admFather" required placeholder="Enter father's name"></div>
+        </div>
+        <div class="fg">
+          <div><label for="admPhone">Contact Phone / WhatsApp</label><input id="admPhone" required placeholder="10-digit mobile number"></div>
+          <div><label for="admClass">Desired Class / Darja</label>
+            <select id="admClass">
+              <option value="1">Darja-e-Oola (Year 1)</option>
+              <option value="2">Darja-e-Thaniya (Year 2)</option>
+              <option value="3">Darja-e-Thalitha (Year 3)</option>
+              <option value="4">Darja-e-Rabia (Year 4)</option>
+              <option value="5">Darja-e-Khamisa (Year 5)</option>
+              <option value="6">Darja-e-Sadisa (Year 6)</option>
+              <option value="7">Darja-e-Sabia (Year 7)</option>
+              <option value="8">Darul Hadis Sharif (Year 8)</option>
+            </select>
+          </div>
+        </div>
+        <div><label for="admCity">City / State</label><input id="admCity" required placeholder="Your current city"></div>
+        <div><label for="admNote">Additional Notes or Questions</label><textarea id="admNote" rows="3" placeholder="Previous madrasa or schooling details..."></textarea></div>
+        <div style="margin-top:10px">
+          <button class="btn" type="submit">Submit Admission Inquiry</button>
+        </div>
+        <p class="msg" id="admMsg" style="color:var(--gold);margin-top:10px"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="events" class="band" data-role="all">
+  <div class="wrap">
+    <h2>Events</h2>
+    <h3>Upcoming</h3>
+    <div id="evUp" data-render></div>
+    <h3 style="margin-top:28px">Past</h3>
+    <div id="evPast" data-render></div>
+    <div class="card" id="evForm" data-init="hidden" hidden style="margin-top:24px">
+      <h3>Add an Event (Administrator)</h3>
+      <form id="ef">
+        <div class="fg">
+          <div><label for="et">Title</label><input id="et" required></div>
+          <div><label for="ed">Date</label><input id="ed" type="date"></div>
+        </div>
+        <div><label for="ex">Details</label><textarea id="ex" rows="2"></textarea></div>
+        <div><button class="btn" type="submit">Publish Event</button><span class="msg" id="em"></span></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Feedback & Suggestion Section -->
+<section id="feedback" data-role="all">
+  <div class="wrap">
+    <h2>Feedback &amp; Suggestions</h2>
+    <p>We value your thoughts and suggestions for improving our institution and services.</p>
+    <div class="card" style="max-width:700px;margin:0 auto">
+      <form id="feedbackForm">
+        <div class="fg">
+          <div><label for="fbName">Your Name (Optional)</label><input id="fbName" placeholder="Name or Visitor"></div>
+          <div><label for="fbEmail">Email or Phone</label><input id="fbEmail" placeholder="Contact info"></div>
+        </div>
+        <div><label for="fbText">Your Feedback or Suggestion</label><textarea id="fbText" rows="4" required placeholder="Share your suggestions..."></textarea></div>
+        <div style="margin-top:10px"><button class="btn" type="submit">Send Feedback</button></div>
+        <p class="msg" id="fbMsg" style="color:var(--gold);margin-top:10px"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="students" class="band" data-role="all">
+  <div class="wrap">
+    <h2>Student Records &amp; Portal</h2>
+    <div class="card" id="stuLocked">
+      <h3>Private Portal</h3>
+      <p id="lockMsg">Sign in through the opening gate or portal login button above to access records and submit direct queries to the Principal.</p>
+    </div>
+    
+    <!-- Student Personal View -->
+    <div class="card" id="studentProfileCard" hidden>
+      <h3>Welcome, <span id="stNameView"></span></h3>
+      <p><b>Roll Number:</b> <span id="stRollView"></span> | <b>Class:</b> <span id="stClassView"></span></p>
+      <p><b>Father's Name:</b> <span id="stFatherView"></span> | <b>City:</b> <span id="stCityView"></span></p>
+      
+      <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+      
+      <!-- Direct Query to Principal Section -->
+      <div style="background:var(--soft);padding:20px;border-radius:12px;margin-bottom:24px">
+        <h4 style="margin-top:0;color:var(--gold)">Ask Question / Suggestion to Principal</h4>
+        <p style="font-size:0.9rem;color:var(--mut)">Directly submit your academic questions, suggestions, or queries to Principal <b>Molana Raihan Misbahi</b>.</p>
+        <form id="studentQueryForm">
+          <div><label for="studentQueryText">Your Question or Suggestion</label><textarea id="studentQueryText" rows="3" required placeholder="Type your message for the Principal here..."></textarea></div>
+          <div style="margin-top:10px"><button class="btn sm" type="submit">Send to Principal</button></div>
+          <p class="msg" id="queryMsg" style="color:var(--gold);margin-top:6px"></p>
+        </form>
+      </div>
+
+      <h4>Change Password / Login Phone</h4>
+      <form id="changePassForm" style="max-width:300px">
+        <div><label for="newStudentPass">New Password / Phone</label><input id="newStudentPass" required placeholder="Enter new password"></div>
+        <div style="margin-top:10px"><button class="btn sm" type="submit">Update Password</button></div>
+        <p class="msg" id="passMsg" style="color:var(--gold);margin-top:6px"></p>
+      </form>
+
+      <div style="margin-top:24px"><button class="btn alt sm" id="stLogoutBtn" type="button">Log Out</button></div>
+    </div>
+
+    <!-- Admin Data Management View -->
+    <div id="stuApp" hidden>
+      <div class="cnt" id="cnt" data-render></div>
+      <div class="tb">
+        <div><label for="q">Search</label><input id="q" placeholder="Name, father or phone"></div>
+        <div><label for="fc">Class</label><select id="fc"></select></div>
+        <button class="btn" id="add" type="button">Add Student</button>
+        <button class="btn alt" id="exp" type="button">Export CSV</button>
+        <button class="btn alt" id="imp" type="button">Import CSV</button>
+        <button class="btn alt" id="syncSheetsBtn" type="button">Sync Google Sheets</button>
+      </div>
+      <div class="card" id="sf" hidden style="margin-bottom:16px">
+        <form id="sform">
+          <div class="fg">
+            <div><label for="sn">Student Name</label><input id="sn" required></div>
+            <div><label for="sfa">Father's Name</label><input id="sfa"></div>
+            <div><label for="sc">Class</label><select id="sc"></select></div>
+            <div><label for="sr">Roll No.</label><input id="sr" inputmode="numeric"></div>
+            <div><label for="sp">Guardian Phone</label><input id="sp" inputmode="tel"></div>
+            <div><label for="scity">City / Village</label><input id="scity"></div>
+          </div>
+          <div><button class="btn" type="submit">Save</button> <button class="btn alt" type="button" id="scancel">Cancel</button></div>
+        </form>
+      </div>
+      <div class="card" id="imbox" hidden style="margin-bottom:16px">
+        <label for="imt">Paste one student per line: Name, Father, Class (1 to 8), Roll, Phone, City</label>
+        <textarea id="imt" rows="5"></textarea>
+        <div style="margin-top:10px"><button class="btn" id="imgo" type="button">Import</button></div>
+      </div>
+      <div class="card tw">
+        <table>
+          <thead><tr><th>Roll</th><th>Name</th><th>Father</th><th>Class</th><th>Phone</th><th>City</th><th></th></tr></thead>
+          <tbody id="tb" data-render></tbody>
+        </table>
+      </div>
+      <p class="msg" id="sm"></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap fg3">
+    <div>
+      <h3>Jamiatul Madina Faizan-e-Siddique Akbar</h3>
+      <p>Taj Nagri Phase 2, Near Hotel Orchid, Agra. Full Alim Course (Darja-e-Oola to Darul Hadis Sharif).</p>
+      <p style="margin-top:8px"><b>Principal:</b> Molana Raihan Misbahi<br><b>Vice Principal:</b> Molana Imran Misbahi</p>
+    </div>
+    <div>
+      <h3>Location &amp; Visit</h3>
+      <p>Taj Nagri Phase 2, Near Hotel Orchid, Agra, Uttar Pradesh, India</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p class="ph" style="color:#fde68a">[Phone] &middot; [Email]</p>
+    </div>
+  </div>
+</footer>
+
+<script type="application/json" id="state">[
+  {"id":"e1","title":"Meeting in Ahmedabad for Darul Hadees Students","date":"2026-12-11","desc":"Special meeting and interactive session organized in Ahmedabad for Darul Hadees students from 11th to 13th December 2026."},
+  {"id":"e2","title":"Monthly Speech and Naat Programme","date":"","desc":"Students present speeches and naat. Date to be announced."},
+  {"id":"e3","title":"Annual Result and Dastar Bandi Ceremony","date":"","desc":"Results and certificates for the year. Date to be announced."}
+]</script>
+
+<script>
+var SHEETS_API_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+var CL=[
+{n:1,name:"Darja-e-Oola (Year 1)",s:["Madani Qaidah + Faizan-e-Tajweed","Qawaidus Sarf (Arabic Morphology)","Asas-e-Nahw & Khulasatun Nahw","Arkan-e-Islam (Fiqh)","Al-Arabiyyah li Thalibin (Level 1)","Akhri Nabi ki Pyari Seerat","Faiz-e-Adab","Modern Board Subjects"]},
+{n:2,name:"Darja-e-Thaniya (Year 2)",s:["Quran with Hadr & Memorization","Hidayatun Nahw","Nur-ul-Iydah (Fiqh)","Jami-ul-Waqf & Marifat-ul-Waqoof","Bahar-e-Shariat (Vol 12) & Islami Akhlaq","Misbah-ul-Insha & Al-Arabiyyah li Thalibin","Jawahar-ul-Mantiq","Modern Board Subjects"]},
+{n:3,name:"Darja-e-Thalitha (Year 3)",s:["Usul-e-Shashi","Droos-ul-Balaghah","Mukhtasar-ul-Quduri","Musnad Imam Azam (Hadith)","Mirqat (Logic)","An-Nahw-ul-Wadih","Tarikhul Khulafa & Sirat-ul-Husain","Tafsir Sirat-ul-Jinan (Parts 24 & 25)"]},
+{n:4,name:"Darja-e-Rabia (Year 4)",s:["Tafsir al-Jalalain","Sharh-e-Wiqayah","Nur-ul-Anwar","Kafiyah","Maqamat-e-Hariri & Madih-e-Nabwi","Misbah-ul-Insha (Vol 2)","Tafsir Sirat-ul-Jinan (Parts 27 & 28)"]},
+{n:5,name:"Darja-e-Khamisa (Year 5)",s:["Tafsir al-Jalalain","Al-Hidayah (Fiqh - Vol 1)","Al-Balaghah al-Wadihah","Mishkat-ul-Masabih","Fahm-e-Quran ke Zabte & Zubdatul Itqan","Al-Fawz-ul-Kabeer","Qutbi & Mir Qutbi","Badatul Hikmah & Hidayatul Hikmah"]},
+{n:6,name:"Darja-e-Sadisa (Year 6)",s:["Madarik-ut-Tanzil","Al-Hidayah (Fiqh)","Sharh Aqaid","Taysir Mustalah-ul-Hadith","Mukhtasar-ul-Maani","Mizan-ul-Adyan bil Islam & Kufriya Kalimat","Al-Arabiya li-Thalibin (Level 3) & Persian"]},
+{n:7,name:"Darja-e-Sabia (Year 7)",s:["Tafsir al-Baydawi","Al-Hidayah (Advanced)","Sharh Maani-ul-Aasar","Nuzhat-un-Nazar","Al-Muntaqad & Al-Mu'taqad","Al-Tawdeeh & Al-Husamiyyah","Sirajiyyah & Fara'id","Jaa al-Haqq & Munsifana Jaiza"]},
+{n:8,name:"Darul Hadis Sharif (Year 8)",s:["Sahih al-Bukhari","Sahih Muslim","Jami at-Tirmidhi","Sunan Abi Dawud","Sunan an-Nasai & Sunan Ibn Majah","Minhaj-ul-Abidin & Doroos-ul-Ilmiyah","Al-Arabiya li-Thalibin (Level 5)","Takharrij-ul-Hadith"]}
+];
+
+var $=function(i){return document.getElementById(i)};
+var esc=function(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+
+var defaultST = [
+  {id:"s1",roll:"101",name:"Muhammad Zaid",father:"Abdul Kareem",cls:1,phone:"9876543210",city:"Agra"},
+  {id:"s2",roll:"102",name:"Ahmad Raza",father:"Ghulam Mustafa",cls:1,phone:"9876543211",city:"Mathura"},
+  {id:"s3",roll:"201",name:"Sohail Akhtar",father:"Mohammed Yusuf",cls:2,phone:"9876543212",city:"Agra"}
+];
+
+// Load from LocalStorage if available
+var savedData = localStorage.getItem("jamiat_students_data");
+var ST = savedData ? JSON.parse(savedData) : defaultST;
+
+function saveST(){
+  localStorage.setItem("jamiat_students_data", JSON.stringify(ST));
+}
+
+var EV=JSON.parse($("state").textContent),cur=1,admin=false,loggedInStudent=null,editId=null,delArm=null;
+
+// Sidebar Drawer Control
+function toggleSidebar(show){
+  if(show){
+    $("sidebarOverlay").classList.add("active");
+    $("sidebarDrawer").classList.add("active");
+  }else{
+    $("sidebarOverlay").classList.remove("active");
+    $("sidebarDrawer").classList.remove("active");
+  }
+}
+$("openSidebarBtn").onclick=function(){toggleSidebar(true)};
+$("closeSidebarBtn").onclick=function(){toggleSidebar(false)};
+$("sidebarOverlay").onclick=function(){toggleSidebar(false)};
+$("sidebarNav").addEventListener("click",function(e){
+  if(e.target.tagName==="A"){toggleSidebar(false)}
+});
+
+function applyUserRoleView(){
+  var isStudent = !!loggedInStudent;
+  var publicElements = document.querySelectorAll('[data-role="public"]');
+  publicElements.forEach(function(el){
+    el.hidden = isStudent;
+  });
+
+  if(isStudent){
+    cur = loggedInStudent.cls;
+    $("cls").innerHTML = '<button type="button" class="on">Your Class: ' + cname(cur) + '</button>';
+    var c = CL.filter(function(x){return x.n==cur})[0];
+    $("clp").innerHTML = '<h3>'+c.name+'</h3><p class="msg">Your Enrolled Syllabus &amp; Recommended Books</p><div class="chips">'+c.s.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join("")+'</div>';
+    $("syllabusIntro").textContent = "Here is your official curriculum and prescribed books for your enrolled class:";
+  } else {
+    drawClasses();
+    $("syllabusIntro").textContent = "Select any academic year below to view the official recommended books and subjects prescribed for the course.";
+  }
+}
+
+function cname(n){var c=CL.filter(function(x){return x.n==n})[0];return c?c.name:"-"}
+function drawClasses(){
+  $("cls").innerHTML=CL.map(function(c){return '<button type="button" data-n="'+c.n+'" class="'+(c.n==cur?"on":"")+'">'+c.n+'. '+c.name+'</button>'}).join("");
+  var c=CL.filter(function(x){return x.n==cur})[0];
+  var cnt=admin?'<p class="msg">Students in this class: '+ST.filter(function(s){return s.cls==cur}).length+'</p>':'';
+  $("clp").innerHTML='<h3>'+c.name+'</h3><p class="msg">Year '+c.n+' of 8 &middot; Dars-e-Nizami Curriculum</p><div class="chips">'+c.s.map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join("")+'</div>'+cnt;
+}
+$("cls").addEventListener("click",function(e){var b=e.target.closest("button");if(b&&!loggedInStudent){cur=+b.dataset.n;drawClasses()}});
+
+function drawResults(){
+  var selCls = +$("resClassSelect").value;
+  var filtered = ST.filter(function(s){return s.cls === selCls});
+  $("resultTableBody").innerHTML = filtered.length ? filtered.map(function(s){
+    return '<tr><td>'+esc(s.roll)+'</td><td>'+esc(s.name)+'</td><td>'+esc(s.father)+'</td><td>Annual 2026</td><td><span class="chip" style="background:var(--gold-soft);color:var(--gold)">Pass (Imtiyaz)</span></td></tr>';
+  }).join("") : '<tr><td colspan="5" class="msg">No student result records found for this class.</td></tr>';
+}
+$("resClassSelect").addEventListener("change", drawResults);
+
+$("admissionForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  $("admMsg").textContent="Thank you! Your admission inquiry has been received. We will contact you soon.";
+  $("admissionForm").reset();
+});
+
+$("feedbackForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  $("fbMsg").textContent="Thank you! Your feedback has been submitted successfully.";
+  $("feedbackForm").reset();
+});
+
+$("studentQueryForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  $("queryMsg").textContent="Your question/suggestion has been sent directly to Principal Molana Raihan Misbahi.";
+  $("studentQueryText").value="";
+});
+
+function fmt(d){return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"})}
+function evCard(e){
+  var dt=e.date?'<div class="date"><b>'+new Date(e.date+"T00:00:00").getDate()+'</b>'+new Date(e.date+"T00:00:00").toLocaleDateString("en-IN",{month:"short",year:"numeric"})+'</div>':'<div class="date"><b>TBA</b>date</div>';
+  return '<div class="card ev">'+dt+'<div><h3 style="margin:0">'+esc(e.title)+'</h3>'+(e.date?'<p>'+fmt(e.date)+'</p>':'')+'<p>'+esc(e.desc)+'</p></div>'+(admin?'<button class="btn alt sm x" data-del="'+esc(e.id)+'" type="button">Remove</button>':'')+'</div>';
+}
+function drawEvents(){
+  var t=new Date().toISOString().slice(0,10);
+  var up=EV.filter(function(e){return !e.date||e.date>=t}).sort(function(a,b){return (a.date||"9").localeCompare(b.date||"9")});
+  var past=EV.filter(function(e){return e.date&&e.date<t}).sort(function(a,b){return b.date.localeCompare(a.date)});
+  $("evUp").innerHTML=up.length?up.map(evCard).join(""):'<p class="msg">No upcoming events right now.</p>';
+  $("evPast").innerHTML=past.length?past.map(evCard).join(""):'<p class="msg">No past events yet.</p>';
+}
+
+$("ef").addEventListener("submit",function(e){
+  e.preventDefault();
+  EV.push({id:"e"+Date.now(),title:$("et").value.trim(),date:$("ed").value,desc:$("ex").value.trim()});
+  $("et").value="";$("ed").value="";$("ex").value="";
+  drawEvents();
+});
+
+function fillSel(el,all){el.innerHTML=(all?'<option value="0">All classes</option>':'')+CL.map(function(c){return '<option value="'+c.n+'">'+c.n+'. '+c.name+'</option>'}).join("")}
+function drawStu(){
+  var q=$("q").value.toLowerCase(),f=+$("fc").value;
+  var rows=ST.filter(function(s){return(!f||s.cls==f)&&(!q||(s.name+" "+s.father+" "+s.phone).toLowerCase().indexOf(q)>-1)})
+  .sort(function(a,b){return a.cls-b.cls||(+a.roll||0)-(+b.roll||0)});
+  $("tb").innerHTML=rows.map(function(s){return '<tr><td>'+esc(s.roll)+'</td><td>'+esc(s.name)+'</td><td>'+esc(s.father)+'</td><td>'+esc(cname(s.cls))+'</td><td>'+esc(s.phone)+'</td><td>'+esc(s.city)+'</td><td><button class="btn alt sm" data-e="'+s.id+'" type="button">Edit</button> <button class="btn alt sm" data-d="'+s.id+'" type="button">'+(delArm===s.id?"Sure?":"Delete")+'</button></td></tr>'}).join("")||'<tr><td colspan="7" class="msg">No students found.</td></tr>';
+  $("cnt").innerHTML='<span class="chip"><b>'+ST.length+'</b> students</span>'+CL.map(function(c){var n=ST.filter(function(s){return s.cls==c.n}).length;return '<span class="chip">'+c.n+'. '+c.name+': '+n+'</span>'}).join("");
+}
+function openForm(s){editId=s?s.id:null;$("sf").hidden=false;
+$("sn").value=s?s.name:"";$("sfa").value=s?s.father:"";$("sc").value=s?s.cls:cur;$("sr").value=s?s.roll:"";$("sp").value=s?s.phone:"";$("scity").value=s?s.city:"";$("sn").focus();}
+function msg(t){$("sm").textContent=t}
+function clsOf(v){v=String(v||"").trim().toLowerCase();var n=parseInt(v,10);if(n>=1&&n<=8)return n;var c=CL.filter(function(x){return x.name.toLowerCase().indexOf(v)>-1&&v})[0];return c?c.n:1}
+
+function initStudentPortal(){
+  fillSel($("fc"),true);fillSel($("sc"),false);
+  ["q","fc"].forEach(function(i){$(i).addEventListener("input",drawStu)});
+  $("add").onclick=function(){openForm(null)};
+  $("scancel").onclick=function(){$("sf").hidden=true};
+  $("imp").onclick=function(){$("imbox").hidden=!$("imbox").hidden};
+  $("sform").addEventListener("submit",function(e){e.preventDefault();
+  var d={name:$("sn").value.trim(),father:$("sfa").value.trim(),cls:+$("sc").value,roll:$("sr").value.trim(),phone:$("sp").value.trim(),city:$("scity").value.trim()};
+  if(editId){
+    ST=ST.map(function(s){return s.id===editId?Object.assign({id:editId},d):s});
+  }else{
+    ST.push(Object.assign({id:"s"+Date.now()},d));
+  }
+  saveST();
+  $("sf").hidden=true;drawStu();drawClasses();drawResults();msg("Saved successfully.");});
+  $("tb").addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;
+  if(b.dataset.e){openForm(ST.filter(function(s){return s.id===b.dataset.e})[0])}
+  if(b.dataset.d){if(delArm===b.dataset.d){ST=ST.filter(function(s){return s.id!==b.dataset.d});saveST();drawStu();drawClasses();drawResults();msg("Deleted.")}else{delArm=b.dataset.d;drawStu()}}});
+}
+
+// Gate Login Actions
+$("tabStudentBtn").onclick=function(){
+  $("tabStudentBtn").classList.add("active");
+  $("tabAdminBtn").classList.remove("active");
+  $("gateStudentForm").hidden=false;
+  $("gateForgotForm").hidden=true;
+  $("gateAdminForm").hidden=true;
+};
+$("tabAdminBtn").onclick=function(){
+  $("tabAdminBtn").classList.add("active");
+  $("tabStudentBtn").classList.remove("active");
+  $("gateAdminForm").hidden=false;
+  $("gateStudentForm").hidden=true;
+  $("gateForgotForm").hidden=true;
+};
+
+$("forgotPassLink").onclick=function(e){
+  e.preventDefault();
+  $("gateStudentForm").hidden=true;
+  $("gateForgotForm").hidden=false;
+};
+$("backToLoginLink").onclick=function(e){
+  e.preventDefault();
+  $("gateForgotForm").hidden=true;
+  $("gateStudentForm").hidden=false;
+};
+
+// Fixed Forgot Password Handler with LocalStorage Persistence & Class Indication
+$("gateForgotForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var r=$("forgotRoll").value.trim();
+  var newP=$("newPassInput").value.trim();
+  var student=ST.find(function(s){return String(s.roll)===String(r)});
+  if(student){
+    student.phone=newP;
+    saveST();
+    $("forgotMsg").style.color="green";
+    $("forgotMsg").innerHTML="Password updated for Roll " + r + "!<br><b>Note:</b> You belong to <b>" + cname(student.cls) + "</b>. Select this class to log in.";
+    $("gateClassSelect").value = student.cls;
+    $("gateRoll").value = student.roll;
+    $("gatePhone").value = newP;
+    setTimeout(function(){
+      $("gateForgotForm").hidden=true;
+      $("gateStudentForm").hidden=false;
+      $("forgotMsg").textContent="";
+    }, 4000);
+  }else{
+    $("forgotMsg").style.color="#b91c1c";
+    $("forgotMsg").textContent="Roll Number " + r + " not found in student records.";
+  }
+});
+
+$("changePassForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var newP=$("newStudentPass").value.trim();
+  if(loggedInStudent){
+    loggedInStudent.phone=newP;
+    saveST();
+    $("passMsg").textContent="Password updated successfully!";
+    $("newStudentPass").value="";
+  }
+});
+
+$("gateStudentForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var selClass = +$("gateClassSelect").value;
+  var r=$("gateRoll").value.trim();
+  var p=$("gatePhone").value.trim();
+  
+  var studentFound = ST.find(function(s){return String(s.roll) === String(r)});
+  
+  if(!studentFound){
+    $("gateStudentMsg").textContent = "Roll Number " + r + " is not registered.";
+    return;
+  }
+
+  if(studentFound.cls !== selClass){
+    $("gateStudentMsg").innerHTML = "Roll " + r + " belongs to <b>" + cname(studentFound.cls) + "</b>, not " + cname(selClass) + ". Please select the correct class.";
+    return;
+  }
+
+  if(String(studentFound.phone) !== String(p)){
+    $("gateStudentMsg").textContent = "Incorrect password/phone for Roll " + r + ".";
+    return;
+  }
+
+  loggedInStudent=studentFound;
+  admin=false;
+  $("welcomeGate").hidden=true;
+  $("stNameView").textContent=studentFound.name;
+  $("stRollView").textContent=studentFound.roll;
+  $("stClassView").textContent=cname(studentFound.cls);
+  $("stFatherView").textContent=studentFound.father;
+  $("stCityView").textContent=studentFound.city;
+  $("stuLocked").hidden=true;
+  $("studentProfileCard").hidden=false;
+  $("stuApp").hidden=true;
+  $("evForm").hidden=true;
+  applyUserRoleView();
+  drawEvents();
+});
+
+$("gateAdminForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var u=$("gateAdminUser").value.trim();
+  var p=$("gateAdminPass").value.trim();
+  if(u==="admin"&&p==="admin123"){
+    admin=true;
+    loggedInStudent=null;
+    $("welcomeGate").hidden=true;
+    $("stuLocked").hidden=true;
+    $("studentProfileCard").hidden=true;
+    $("stuApp").hidden=false;
+    $("evForm").hidden=false;
+    applyUserRoleView();
+    initStudentPortal();
+    drawStu();
+    drawClasses();
+    drawEvents();
+  }else{
+    $("gateAdminMsg").textContent="Invalid username or password. Try admin / admin123";
+  }
+});
+
+$("skipGateBtn").onclick=function(){
+  loggedInStudent=null;
+  admin=false;
+  $("welcomeGate").hidden=true;
+  applyUserRoleView();
+};
+
+$("reopenGateBtn").onclick=function(){
+  $("welcomeGate").hidden=false;
+};
+
+$("stLogoutBtn").onclick=function(){
+  loggedInStudent=null;
+  admin=false;
+  $("studentProfileCard").hidden=true;
+  $("stuLocked").hidden=false;
+  applyUserRoleView();
+  $("welcomeGate").hidden=false;
+};
+
+applyUserRoleView();drawClasses();drawEvents();drawResults();
+</script>
+</body>
+</html>
